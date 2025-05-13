@@ -1,0 +1,47 @@
+//
+//  LogInView.swift
+//  LoginDemoSiwiftUI
+//
+//  Created by MACM18 on 12/05/25.
+//
+
+import SwiftUI
+
+struct LogInView: View {
+    @ObservedObject var viewModel = LogInViewModal()
+
+    var body: some View {
+        VStack(alignment: .leading){
+            Text("Sign In")
+                .font(.system(size: 40,weight: .bold))
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+            Text("Welcome Back")
+                .font(.system(size: 26,weight: .bold))
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+            VStack{
+                ULTextFieldView(text: $viewModel.emailAddress,placeholder: "Email", keyboardType: .emailAddress)
+                ULTextFieldView(text: $viewModel.password,placeholder: "Passwod")
+            }.padding(.vertical,40)
+            CustomButton(
+                title: "Sign In",
+                textColor: .white,
+                background: LinearGradient(
+                    gradient: Gradient(colors: [Color.orange, Color.red]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )) {
+                    viewModel.login()
+                }
+        }
+        .padding(.horizontal,30)
+        .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
+        .background(Color.black.edgesIgnoringSafeArea(.all))
+
+    }
+}
+
+#Preview {
+    LogInView()
+}
