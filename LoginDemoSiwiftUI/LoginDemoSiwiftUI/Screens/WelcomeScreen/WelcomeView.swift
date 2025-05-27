@@ -41,7 +41,7 @@ struct WelcomeView: View {
                     CustomButton(
                         title: "Sign Up",
                         textColor: .white,
-                        background: Color(.darkGray)){
+                        background: Color(.darkGray), isEnabled: true){
                             router.push(.signUp)
                         }
                 
@@ -52,7 +52,7 @@ struct WelcomeView: View {
                             gradient: Gradient(colors: [Color.orange, Color.red]),
                             startPoint: .leading,
                             endPoint: .trailing
-                        )) {
+                        ), isEnabled: true) {
                             router.push(.logIn)
                         }
                     

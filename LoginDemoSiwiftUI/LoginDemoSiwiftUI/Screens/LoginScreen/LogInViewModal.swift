@@ -6,32 +6,101 @@
 //
 
 import Foundation
+import Combine
 
 class LogInViewModal:ObservableObject {
-    @Published var emailAddress:String = "Test@yopmail.com"
-    @Published var password:String = "Test"
+    @Published var emailAddress:String = ""
+    @Published var password:String = ""
+    @Published var errorEmailAddress = ""
+    @Published var errorPassword = ""
+    @Published var isEanbleButton = false
+    @Published var logInErrorTitle = ""
+    @Published var logINErrorMessage = ""
+    @Published var showErrorAlert = false
+
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        setupValidation()
+    }
+    
+    
+    func validateAll() -> Bool {
+        var isValid = true
+        let trimmedEmail = emailAddress.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedEmail.isEmpty {
+            errorEmailAddress = "Email is required"
+            isValid = false
+        } else if !trimmedEmail.isValidEmail {
+            errorEmailAddress = "Please enter a valid email"
+            isValid = false
+        } else {
+            errorEmailAddress = ""
+        }
+        
+        let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedPassword.isEmpty {
+            errorPassword = "Password is required"
+            isValid = false
+        } else if !trimmedPassword.isValidPassword {
+            errorPassword = "Please enter a valid password"
+            isValid = false
+        } else {
+            errorPassword = ""
+        }
+        
+        return isValid
+    }
+    
+    
+    private func setupValidation() {
+        Publishers.CombineLatest($emailAddress,$password)
+            .dropFirst()
+            .sink { [weak self] _,_ in
+                self?.isEanbleButton = self?.validateAll() ?? false
+            }
+            .store(in: &cancellables)
+    }
+    
+    
     
     func login() {
         let endpoint = UserAPI.login(email: emailAddress, password: password)
-        NetworkManager.shared.request(endpoint: endpoint, responseType:LoginResponse.self){ result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    print("accessToken==>"+response.accessToken)
-                case .failure(let error):
+        Task {
+            do {
+                let response = try await NetworkManager.shared.request(
+                    endpoint: endpoint,
+                    responseType: LoginResponse.self
+                )
+                await MainActor.run {
+                    print("accessToken==>" + response.accessToken)
+                }
+            } catch let error as APIError {
+                await MainActor.run {
                     switch error {
                     case .server(let code, let message):
-                        print("Server error \(code):", message ?? "No message")
+                        self.logInErrorTitle = "Server error \(code):"
+                        self.logINErrorMessage = message ?? "No message"
                     case .network(let err):
-                        print("Network error:", err.localizedDescription)
+                        self.logInErrorTitle = "Network error:"
+                        self.logINErrorMessage = err.localizedDescription
                     case .decoding(let err):
-                        print("Parsing error:", err)
+                        self.logInErrorTitle = "Parsing error:"
+                        self.logINErrorMessage = err.localizedDescription
                     case .unknown:
-                        print("Unknown error")
+                        break
                     }
+                    self.showErrorAlert = true
+                }
+            } catch {
+                await MainActor.run {
+                    self.logInErrorTitle = "Unexpected error:"
+                    self.logINErrorMessage = error.localizedDescription
+                    self.showErrorAlert = true
                 }
             }
         }
+        
     }
     
 }

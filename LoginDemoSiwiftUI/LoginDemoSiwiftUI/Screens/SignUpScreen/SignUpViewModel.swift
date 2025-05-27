@@ -6,35 +6,112 @@
 //
 
 import Foundation
+import Combine
 
 class SignUpViewModel:ObservableObject {
     
-    @Published var emailAddress:String = "Test@yopmail.com"
-    @Published var name:String = "Test"
-    @Published var password:String = "Test"
+    @Published var emailAddress:String = ""
+    @Published var name:String = ""
+    @Published var password:String = ""
+    @Published var errorEmailAddress = ""
+    @Published var errorName = ""
+    @Published var errorPassword = ""
+    @Published var isEanbleButton = false
+    @Published var showErrorAlert = false
+    @Published var signUPErrorTitle = ""
+    @Published var signUPErrorMessage = ""
+    
+    private var cancellables = Set<AnyCancellable>()
+
+    init() {
+           setupValidation()
+       }
+    
+    
+    func validateAll() -> Bool {
+        var isValid = true
+
+        let trimmedEmail = emailAddress.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedEmail.isEmpty {
+            errorEmailAddress = "Email is required"
+            isValid = false
+        } else if !trimmedEmail.isValidEmail {
+            errorEmailAddress = "Please enter a valid email"
+            isValid = false
+        } else {
+            errorEmailAddress = ""
+        }
+
+        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedName.isEmpty {
+            errorName = "Please enter a valid name"
+            isValid = false
+        } else {
+            errorName = ""
+        }
+
+        let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedPassword.isEmpty {
+            errorPassword = "Password is required"
+            isValid = false
+        } else if !trimmedPassword.isValidPassword {
+            errorPassword = "Please enter a valid password"
+            isValid = false
+        } else {
+            errorPassword = ""
+        }
+
+        return isValid
+    }
+
+    
+    private func setupValidation() {
+        Publishers.CombineLatest3($emailAddress, $name, $password)
+               .dropFirst()
+               .sink { [weak self] _, _, _ in
+                   self?.isEanbleButton = self?.validateAll() ?? false
+               }
+               .store(in: &cancellables)
+       }
+    
     
     func signUp () {
-        let endpoint = UserAPI.signUp(signUp: .init(name: name, email: emailAddress, password: password, avatar: ""))
-        
-        NetworkManager.shared.request(endpoint: endpoint, responseType: SignUpResponse.self) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
+        let endpoint = UserAPI.signUp(signUp: .init(name: name, email: emailAddress, password: password, avatar:  "https://i.imgur.com/LDOO4Qs.jpg"))
+        Task {
+            do {
+                let response = try await NetworkManager.shared.request(
+                    endpoint: endpoint,
+                    responseType: SignUpResponse.self
+                )
+                await MainActor.run {
                     print(response.id)
-                case .failure(let error):
+                }
+            } catch let error as APIError {
+                await MainActor.run {
                     switch error {
                     case .server(let code, let message):
-                        print("Server error \(code):", message ?? "No message")
+                        self.signUPErrorTitle = "Server error \(code):"
+                        self.signUPErrorMessage = message ?? "No message"
                     case .network(let err):
-                        print("Network error:", err.localizedDescription)
+                        self.signUPErrorTitle = "Network error:"
+                        self.signUPErrorMessage = err.localizedDescription
                     case .decoding(let err):
-                        print("Parsing error:", err)
+                        self.signUPErrorTitle = "Parsing error:"
+                        self.signUPErrorMessage = err.localizedDescription
                     case .unknown:
-                        print("Unknown error")
+                        break
                     }
+                    self.showErrorAlert = true
+                }
+            } catch {
+                await MainActor.run {
+                    self.signUPErrorTitle = "Unexpected error:"
+                    self.signUPErrorMessage = error.localizedDescription
+                    self.showErrorAlert = true
                 }
             }
         }
+
     }
     
 }

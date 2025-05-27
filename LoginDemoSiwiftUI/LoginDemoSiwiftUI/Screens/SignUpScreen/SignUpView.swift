@@ -17,9 +17,9 @@ struct SignUpView: View {
                 .multilineTextAlignment(.leading)
                 .padding(.trailing,50)
             VStack{
-                ULTextFieldView(text: $viewModel.emailAddress,placeholder: "Email", keyboardType: .emailAddress)
-                ULTextFieldView(text: $viewModel.name,placeholder: "Name")
-                ULTextFieldView(text: $viewModel.password,placeholder: "Passwod")
+                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: "Email", keyboardType: .emailAddress)
+                ULTextFieldView(text: $viewModel.name, errorText: $viewModel.errorName,placeholder: "Name")
+                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: "Passwod")
             }.padding(.vertical,40)
             VStack(alignment: .leading) {
                 CustomButton(
@@ -28,8 +28,8 @@ struct SignUpView: View {
                     background: LinearGradient(
                         gradient: Gradient(colors: [Color.orange, Color.red]),
                         startPoint: .leading,
-                        endPoint: .trailing
-                    )) {
+                        endPoint: .trailing),
+                    isEnabled:viewModel.isEanbleButton){
                         viewModel.signUp()
                     }
                 Text("Or sign up with another account.")
@@ -38,10 +38,14 @@ struct SignUpView: View {
                 socialLogIn
                     .padding(.trailing,100)
             }
-            
-            
-            
         }
+        .alert(isPresented: $viewModel.showErrorAlert) {
+                    Alert(
+                        title: Text(viewModel.signUPErrorTitle),
+                        message: Text(viewModel.signUPErrorMessage),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
         .padding(.horizontal,30)
         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
         .background(Color.black.edgesIgnoringSafeArea(.all))
@@ -77,8 +81,8 @@ struct SignUpView: View {
     }
 }
 
-#Preview {
-    SignUpView()
-}
+//#Preview {
+//    SignUpView()
+//}
 
 

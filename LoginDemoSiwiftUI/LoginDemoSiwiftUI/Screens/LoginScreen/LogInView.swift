@@ -13,7 +13,7 @@ struct LogInView: View {
     var body: some View {
         VStack(alignment: .leading){
             Text("Sign In")
-                .font(.system(size: 40,weight: .bold))
+                .font(.system(size: 40,weight:  .bold))
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.leading)
             Text("Welcome Back")
@@ -21,8 +21,8 @@ struct LogInView: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.leading)
             VStack{
-                ULTextFieldView(text: $viewModel.emailAddress,placeholder: "Email", keyboardType: .emailAddress)
-                ULTextFieldView(text: $viewModel.password,placeholder: "Passwod")
+                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: "Email", keyboardType: .emailAddress)
+                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: "Passwod")
             }.padding(.vertical,40)
             CustomButton(
                 title: "Sign In",
@@ -31,17 +31,24 @@ struct LogInView: View {
                     gradient: Gradient(colors: [Color.orange, Color.red]),
                     startPoint: .leading,
                     endPoint: .trailing
-                )) {
+                ), isEnabled: viewModel.isEanbleButton) {
                     viewModel.login()
                 }
         }
+        .alert(isPresented: $viewModel.showErrorAlert) {
+                    Alert(
+                        title: Text(viewModel.logInErrorTitle),
+                        message: Text(viewModel.logINErrorMessage),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
         .padding(.horizontal,30)
         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
         .background(Color.black.edgesIgnoringSafeArea(.all))
 
     }
 }
-
-#Preview {
-    LogInView()
-}
+//
+//#Preview {
+//    LogInView()
+//}

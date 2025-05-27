@@ -15,45 +15,45 @@ class NetworkManager {
     
     func request<T: Decodable>(
         endpoint: APIEndpoint,
-        responseType: T.Type,
-        completion: @escaping (Result<T, APIError>) -> Void
-    ) {
+        responseType: T.Type
+    ) async throws -> T {
         let url = endpoint.baseURL + endpoint.path
         
-        AF.request(
+        let request = AF.request(
             url,
             method: HTTPMethod(rawValue: endpoint.method.rawValue),
             parameters: endpoint.parameters,
             encoding: endpoint.encoding,
             headers: endpoint.headers
         )
-        .validate()
-        .responseData { response in
-            let statusCode = response.response?.statusCode ?? -1
+        
+        let response = try await request.serializingData().response
+        
+        let statusCode = response.response?.statusCode ?? -1
+        
+        switch response.result {
+        case .success(let data):
+            if (200..<300).contains(statusCode) {
+                do {
+                    let decoded = try JSONDecoder().decode(T.self, from: data)
+                    return decoded
+                } catch {
+                    throw APIError.decoding(error)
+                }
+            } else {
+                // Decode server error message
+                let serverMessage = try? JSONDecoder().decode(ServerErrorResponse.self, from: data)
+                let message = serverMessage?.message.joined(separator: "\n") ?? serverMessage?.error
+                throw APIError.server(code: statusCode, message: message)
+            }
             
-            switch response.result {
-            case .success(let data):
-                if (200..<300).contains(statusCode) {
-                    do {
-                        let decoded = try JSONDecoder().decode(T.self, from: data)
-                        completion(.success(decoded))
-                    } catch {
-                        completion(.failure(.decoding(error)))
-                    }
-                } else {
-                      let serverMessage = try? JSONDecoder().decode(ServerErrorResponse.self, from: data)
-                    let message = serverMessage?.message.joined(separator: "\n") ?? serverMessage?.error
-                    completion(.failure(.server(code: statusCode, message: message)))
-                }
-                
-            case .failure(let afError):
-                if let data = response.data {
-                    let serverMessage = try? JSONDecoder().decode(ServerErrorResponse.self, from: data)
-                    let message = serverMessage?.message.joined(separator: "\n") ?? serverMessage?.error
-                    completion(.failure(.server(code: statusCode, message: message)))
-                } else {
-                    completion(.failure(.network(afError)))
-                }
+        case .failure(let afError):
+            if let data = response.data {
+                let serverMessage = try? JSONDecoder().decode(ServerErrorResponse.self, from: data)
+                let message = serverMessage?.message.joined(separator: "\n") ?? serverMessage?.error
+                throw APIError.server(code: statusCode, message: message)
+            } else {
+                throw APIError.network(afError)
             }
         }
     }

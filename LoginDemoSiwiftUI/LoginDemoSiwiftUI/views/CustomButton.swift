@@ -11,17 +11,22 @@ struct CustomButton<Background: View>: View {
     let title: String
     let textColor: Color
     let background: Background
+    let isEnabled: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             Text(title)
                 .fontWeight(.bold)
-                .foregroundColor(textColor)
+                .foregroundColor(isEnabled ? textColor : textColor.opacity(0.5))
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(background)
-                .cornerRadius(20)
+                .background(
+                    isEnabled
+                        ? AnyView(background)
+                        : AnyView(Color.gray.opacity(0.3))
+                )                .cornerRadius(20)
         }
+        .disabled(!isEnabled)
     }
 }

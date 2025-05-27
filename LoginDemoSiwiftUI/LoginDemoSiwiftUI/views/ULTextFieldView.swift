@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ULTextFieldView: View {
     @Binding var text: String
+    @Binding var errorText:String
+
     var placeholder: String = "Enter text"
     var keyboardType: UIKeyboardType = .default
 
@@ -24,10 +26,14 @@ struct ULTextFieldView: View {
                 .placeholder(when: text.isEmpty) {
                     Text(placeholder).foregroundColor(.gray)
                 }
-            
             Rectangle()
                 .frame(height: 1)
                 .foregroundColor(.gray)
+            
+            if !errorText.isEmpty {
+                Text(errorText)
+                    .foregroundColor(Color.red)
+            }
         }
         .padding()
     }
