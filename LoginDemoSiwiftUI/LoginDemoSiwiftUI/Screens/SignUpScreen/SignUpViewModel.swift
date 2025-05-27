@@ -33,10 +33,10 @@ class SignUpViewModel:ObservableObject {
 
         let trimmedEmail = emailAddress.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedEmail.isEmpty {
-            errorEmailAddress = "Email is required"
+            errorEmailAddress = StringConsatnts.emailEmptyError
             isValid = false
         } else if !trimmedEmail.isValidEmail {
-            errorEmailAddress = "Please enter a valid email"
+            errorEmailAddress = StringConsatnts.invalidEmailError
             isValid = false
         } else {
             errorEmailAddress = ""
@@ -44,7 +44,7 @@ class SignUpViewModel:ObservableObject {
 
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedName.isEmpty {
-            errorName = "Please enter a valid name"
+            errorName = StringConsatnts.invalidNameError
             isValid = false
         } else {
             errorName = ""
@@ -52,10 +52,10 @@ class SignUpViewModel:ObservableObject {
 
         let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedPassword.isEmpty {
-            errorPassword = "Password is required"
+            errorPassword = StringConsatnts.passwordEmptyError
             isValid = false
         } else if !trimmedPassword.isValidPassword {
-            errorPassword = "Please enter a valid password"
+            errorPassword = StringConsatnts.invalidPasswordError
             isValid = false
         } else {
             errorPassword = ""
@@ -90,13 +90,13 @@ class SignUpViewModel:ObservableObject {
                 await MainActor.run {
                     switch error {
                     case .server(let code, let message):
-                        self.signUPErrorTitle = "Server error \(code):"
-                        self.signUPErrorMessage = message ?? "No message"
+                        self.signUPErrorTitle = "\(StringConsatnts.serverError) \(code):"
+                        self.signUPErrorMessage = message ?? StringConsatnts.defultError
                     case .network(let err):
-                        self.signUPErrorTitle = "Network error:"
+                        self.signUPErrorTitle = StringConsatnts.networkError
                         self.signUPErrorMessage = err.localizedDescription
                     case .decoding(let err):
-                        self.signUPErrorTitle = "Parsing error:"
+                        self.signUPErrorTitle = StringConsatnts.parsingError
                         self.signUPErrorMessage = err.localizedDescription
                     case .unknown:
                         break
@@ -105,7 +105,7 @@ class SignUpViewModel:ObservableObject {
                 }
             } catch {
                 await MainActor.run {
-                    self.signUPErrorTitle = "Unexpected error:"
+                    self.signUPErrorTitle =  StringConsatnts.unexpectedError
                     self.signUPErrorMessage = error.localizedDescription
                     self.showErrorAlert = true
                 }

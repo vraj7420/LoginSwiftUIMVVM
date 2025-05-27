@@ -25,13 +25,13 @@ struct WelcomeView: View {
             Spacer()
             VStack {
                 VStack(alignment: .leading,spacing: 12) {
-                    Text("Join a community of creators")
+                    Text(StringConsatnts.welcomeScreenTitle)
                         .font(.system(size: 40, weight: .bold))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity,alignment: .leading)
                     
-                    Text("A simple, fun, and creative way to share photos, videos, messages with friends and family")
+                    Text(StringConsatnts.welcomeScreenDes)
                         .font(.system(size: 20,weight: .medium))
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.leading)
@@ -39,14 +39,14 @@ struct WelcomeView: View {
                 Spacer()
                 VStack(spacing: 15) {
                     CustomButton(
-                        title: "Sign Up",
+                        title: StringConsatnts.signUpButtonTitle,
                         textColor: .white,
                         background: Color(.darkGray), isEnabled: true){
                             router.push(.signUp)
                         }
                 
                     CustomButton(
-                        title: "Sign In",
+                        title: StringConsatnts.signInButtonTitle,
                         textColor: .white,
                         background: LinearGradient(
                             gradient: Gradient(colors: [Color.orange, Color.red]),

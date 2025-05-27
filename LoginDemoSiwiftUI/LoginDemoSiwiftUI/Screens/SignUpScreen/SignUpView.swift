@@ -11,19 +11,19 @@ struct SignUpView: View {
     @ObservedObject var viewModel = SignUpViewModel()
     var body: some View {
         VStack{
-            Text("Sign up to see photos and videos from your friends.")
+            Text(StringConsatnts.signUpScreenTitle)
                 .font(.system(size: 26,weight: .bold))
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.leading)
                 .padding(.trailing,50)
             VStack{
-                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: "Email", keyboardType: .emailAddress)
-                ULTextFieldView(text: $viewModel.name, errorText: $viewModel.errorName,placeholder: "Name")
-                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: "Passwod")
+                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: StringConsatnts.emailPlaceholder, keyboardType: .emailAddress)
+                ULTextFieldView(text: $viewModel.name, errorText: $viewModel.errorName,placeholder: StringConsatnts.namePlaceholder)
+                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: StringConsatnts.passwodPlaceholder)
             }.padding(.vertical,40)
             VStack(alignment: .leading) {
                 CustomButton(
-                    title: "Sign Up",
+                    title: StringConsatnts.signUpButtonTitle,
                     textColor: .white,
                     background: LinearGradient(
                         gradient: Gradient(colors: [Color.orange, Color.red]),
@@ -32,7 +32,7 @@ struct SignUpView: View {
                     isEnabled:viewModel.isEanbleButton){
                         viewModel.signUp()
                     }
-                Text("Or sign up with another account.")
+                Text(StringConsatnts.socialSignUpTitle)
                     .font(.system(size: 25,weight: .bold))
                     .foregroundColor(.gray)
                 socialLogIn
@@ -40,12 +40,12 @@ struct SignUpView: View {
             }
         }
         .alert(isPresented: $viewModel.showErrorAlert) {
-                    Alert(
-                        title: Text(viewModel.signUPErrorTitle),
-                        message: Text(viewModel.signUPErrorMessage),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
+            Alert(
+                title: Text(viewModel.signUPErrorTitle),
+                message: Text(viewModel.signUPErrorMessage),
+                dismissButton: .default(Text(StringConsatnts.OkButtonTitle))
+            )
+        }
         .padding(.horizontal,30)
         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
         .background(Color.black.edgesIgnoringSafeArea(.all))
@@ -54,35 +54,23 @@ struct SignUpView: View {
     
     var socialLogIn:some View {
         HStack {
-            Button(action: {
-                print("Facebook Login tapped")
-            }) {
-                Image("facebookLogo")
-                    .resizable()
-                    .frame(width: 50,height: 50)
+            IconButton(imageName: ImageConstants.facebookLogo, width: 50, height: 50){
+                
             }
             Spacer()
-            Button(action: {
-                print("Twitter Login tapped")
-            }) {
-                Image("twiteerLogo")
-                    .resizable()
-                    .frame(width: 50,height: 50)
+            IconButton(imageName: ImageConstants.twiteerLogo, width: 50, height: 50){
+                
             }
             Spacer()
-            Button(action: {
-                print("Google Login tapped")
-            }) {
-                Image("googleLogo")
-                    .resizable()
-                    .frame(width: 50,height: 50)
+            IconButton(imageName: ImageConstants.googleLogo, width: 50, height: 50){
+                
             }
         }
     }
 }
 
-//#Preview {
-//    SignUpView()
-//}
+#Preview {
+    SignUpView()
+}
 
 

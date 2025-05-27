@@ -12,20 +12,20 @@ struct LogInView: View {
 
     var body: some View {
         VStack(alignment: .leading){
-            Text("Sign In")
+            Text(StringConsatnts.signUpButtonTitle)
                 .font(.system(size: 40,weight:  .bold))
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.leading)
-            Text("Welcome Back")
+            Text(StringConsatnts.welcomeBackTitle)
                 .font(.system(size: 26,weight: .bold))
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.leading)
             VStack{
-                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: "Email", keyboardType: .emailAddress)
-                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: "Passwod")
+                ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: StringConsatnts.emailPlaceholder, keyboardType: .emailAddress)
+                ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: StringConsatnts.passwodPlaceholder)
             }.padding(.vertical,40)
             CustomButton(
-                title: "Sign In",
+                title: StringConsatnts.signInButtonTitle,
                 textColor: .white,
                 background: LinearGradient(
                     gradient: Gradient(colors: [Color.orange, Color.red]),
@@ -39,7 +39,7 @@ struct LogInView: View {
                     Alert(
                         title: Text(viewModel.logInErrorTitle),
                         message: Text(viewModel.logINErrorMessage),
-                        dismissButton: .default(Text("OK"))
+                        dismissButton: .default(Text(StringConsatnts.OkButtonTitle))
                     )
                 }
         .padding(.horizontal,30)
@@ -48,7 +48,7 @@ struct LogInView: View {
 
     }
 }
-//
-//#Preview {
-//    LogInView()
-//}
+
+#Preview {
+    LogInView()
+}

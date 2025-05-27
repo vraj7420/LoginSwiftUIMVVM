@@ -29,10 +29,10 @@ class LogInViewModal:ObservableObject {
         var isValid = true
         let trimmedEmail = emailAddress.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedEmail.isEmpty {
-            errorEmailAddress = "Email is required"
+            errorEmailAddress = StringConsatnts.emailEmptyError
             isValid = false
         } else if !trimmedEmail.isValidEmail {
-            errorEmailAddress = "Please enter a valid email"
+            errorEmailAddress = StringConsatnts.invalidEmailError
             isValid = false
         } else {
             errorEmailAddress = ""
@@ -40,15 +40,14 @@ class LogInViewModal:ObservableObject {
         
         let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedPassword.isEmpty {
-            errorPassword = "Password is required"
+            errorPassword = StringConsatnts.passwordEmptyError
             isValid = false
         } else if !trimmedPassword.isValidPassword {
-            errorPassword = "Please enter a valid password"
+            errorPassword = StringConsatnts.invalidPasswordError
             isValid = false
         } else {
             errorPassword = ""
         }
-        
         return isValid
     }
     
@@ -79,13 +78,18 @@ class LogInViewModal:ObservableObject {
                 await MainActor.run {
                     switch error {
                     case .server(let code, let message):
-                        self.logInErrorTitle = "Server error \(code):"
-                        self.logINErrorMessage = message ?? "No message"
+                        self.logInErrorTitle = "\(StringConsatnts.serverError) \(code):"
+                        if code == 401 {
+                            self.logINErrorMessage = StringConsatnts.invalidCredentials
+                        } else {
+                            self.logINErrorMessage = message ?? StringConsatnts.defultError
+
+                        }
                     case .network(let err):
-                        self.logInErrorTitle = "Network error:"
+                        self.logInErrorTitle = StringConsatnts.networkError
                         self.logINErrorMessage = err.localizedDescription
                     case .decoding(let err):
-                        self.logInErrorTitle = "Parsing error:"
+                        self.logInErrorTitle = StringConsatnts.parsingError
                         self.logINErrorMessage = err.localizedDescription
                     case .unknown:
                         break
@@ -94,7 +98,7 @@ class LogInViewModal:ObservableObject {
                 }
             } catch {
                 await MainActor.run {
-                    self.logInErrorTitle = "Unexpected error:"
+                    self.logInErrorTitle = StringConsatnts.unexpectedError
                     self.logINErrorMessage = error.localizedDescription
                     self.showErrorAlert = true
                 }
