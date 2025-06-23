@@ -32,7 +32,9 @@ struct LogInView: View {
                     startPoint: .leading,
                     endPoint: .trailing
                 ), isEnabled: viewModel.isEanbleButton) {
-                    viewModel.login()
+                    Task{
+                        await viewModel.login()
+                    }
                 }
         }
         .alert(isPresented: $viewModel.showErrorAlert) {

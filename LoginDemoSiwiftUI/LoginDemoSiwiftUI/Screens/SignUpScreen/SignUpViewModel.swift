@@ -21,12 +21,13 @@ class SignUpViewModel:ObservableObject {
     @Published var signUPErrorTitle = ""
     @Published var signUPErrorMessage = ""
     
+    private let networkManager: NetworkManagerProtocol
     private var cancellables = Set<AnyCancellable>()
-
-    init() {
-           setupValidation()
-       }
     
+    init(networkManager: NetworkManagerProtocol = NetworkManager.shared) {
+        self.networkManager = networkManager
+        setupValidation()
+    }
     
     func validateAll() -> Bool {
         var isValid = true
@@ -41,7 +42,7 @@ class SignUpViewModel:ObservableObject {
         } else {
             errorEmailAddress = ""
         }
-
+        
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedName.isEmpty {
             errorName = StringConsatnts.invalidNameError
@@ -49,7 +50,7 @@ class SignUpViewModel:ObservableObject {
         } else {
             errorName = ""
         }
-
+        
         let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedPassword.isEmpty {
             errorPassword = StringConsatnts.passwordEmptyError
@@ -60,58 +61,52 @@ class SignUpViewModel:ObservableObject {
         } else {
             errorPassword = ""
         }
-
+        
         return isValid
     }
-
     
     private func setupValidation() {
         Publishers.CombineLatest3($emailAddress, $name, $password)
-               .dropFirst()
-               .sink { [weak self] _, _, _ in
-                   self?.isEanbleButton = self?.validateAll() ?? false
-               }
-               .store(in: &cancellables)
-       }
+            .receive(on: RunLoop.main)
+            .dropFirst()
+            .sink { [weak self] _, _, _ in
+                self?.isEanbleButton = self?.validateAll() ?? false
+            }
+            .store(in: &cancellables)
+    }
     
-    
-    func signUp () {
-        let endpoint = UserAPI.signUp(signUp: .init(name: name, email: emailAddress, password: password, avatar:  "https://i.imgur.com/LDOO4Qs.jpg"))
+    @MainActor
+    func signUp() async {
+        let endpoint = UserAPI.signUp(signUp: .init(name: name, email: emailAddress, password: password, avatar: "https://i.imgur.com/LDOO4Qs.jpg"))
         Task {
             do {
-                let response = try await NetworkManager.shared.request(
+                let response = try await networkManager.request(
                     endpoint: endpoint,
                     responseType: SignUpResponse.self
                 )
-                await MainActor.run {
-                    print(response.id)
-                }
+                print(response.id) // Already on MainActor
             } catch let error as APIError {
-                await MainActor.run {
-                    switch error {
-                    case .server(let code, let message):
-                        self.signUPErrorTitle = "\(StringConsatnts.serverError) \(code):"
-                        self.signUPErrorMessage = message ?? StringConsatnts.defultError
-                    case .network(let err):
-                        self.signUPErrorTitle = StringConsatnts.networkError
-                        self.signUPErrorMessage = err.localizedDescription
-                    case .decoding(let err):
-                        self.signUPErrorTitle = StringConsatnts.parsingError
-                        self.signUPErrorMessage = err.localizedDescription
-                    case .unknown:
-                        break
-                    }
-                    self.showErrorAlert = true
+                switch error {
+                case .server(let code, let message):
+                    self.signUPErrorTitle = "\(StringConsatnts.serverError) \(code):"
+                    self.signUPErrorMessage = message ?? StringConsatnts.defultError
+                case .network(let err):
+                    self.signUPErrorTitle = StringConsatnts.networkError
+                    self.signUPErrorMessage = err.localizedDescription
+                case .decoding(let err):
+                    self.signUPErrorTitle = StringConsatnts.parsingError
+                    self.signUPErrorMessage = err.localizedDescription
+                case .unknown:
+                    self.signUPErrorTitle = StringConsatnts.unexpectedError
+                    self.signUPErrorMessage = StringConsatnts.defultError
                 }
+                self.showErrorAlert = true
             } catch {
-                await MainActor.run {
-                    self.signUPErrorTitle =  StringConsatnts.unexpectedError
-                    self.signUPErrorMessage = error.localizedDescription
-                    self.showErrorAlert = true
-                }
+                self.signUPErrorTitle = StringConsatnts.unexpectedError
+                self.signUPErrorMessage = error.localizedDescription
+                self.showErrorAlert = true
             }
         }
-
     }
     
 }

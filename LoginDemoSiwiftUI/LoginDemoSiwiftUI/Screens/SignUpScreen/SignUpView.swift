@@ -30,7 +30,10 @@ struct SignUpView: View {
                         startPoint: .leading,
                         endPoint: .trailing),
                     isEnabled:viewModel.isEanbleButton){
-                        viewModel.signUp()
+                        Task {
+                            await  viewModel.signUp()
+                        }
+                        
                     }
                 Text(StringConsatnts.socialSignUpTitle)
                     .font(.system(size: 25,weight: .bold))

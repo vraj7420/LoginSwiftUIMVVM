@@ -8,7 +8,11 @@
 import Alamofire
 import Foundation
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func request<T: Decodable>(endpoint: APIEndpoint, responseType: T.Type) async throws -> T
+}
+
+class NetworkManager: NetworkManagerProtocol{
     static let shared = NetworkManager()
     
     private init() {}
@@ -18,7 +22,6 @@ class NetworkManager {
         responseType: T.Type
     ) async throws -> T {
         let url = endpoint.baseURL + endpoint.path
-        
         let request = AF.request(
             url,
             method: HTTPMethod(rawValue: endpoint.method.rawValue),
