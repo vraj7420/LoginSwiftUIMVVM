@@ -53,20 +53,34 @@ final class SignUp_Test: XCTestCase {
      }
 
      func testButtonEnablement_WhenAllFieldsValid_ShouldEnableButton() {
+         let expectation = XCTestExpectation(description: "Wait for isEanbleButton to become true")
+         let cancellable = viewModel.$isEanbleButton
+             .dropFirst()
+             .sink { value in
+                 if value == true {
+                     expectation.fulfill()
+                 }
+             }
          viewModel.emailAddress = "test@example.com"
          viewModel.name = "Test"
          viewModel.password = "Password123"
+         wait(for: [expectation], timeout: 2)
+         cancellable.cancel()
 
-         let exp = expectation(description: "Enable button")
-         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-             XCTAssertTrue(self.viewModel.isEanbleButton)
-             exp.fulfill()
-         }
-
-         wait(for: [exp], timeout: 1.0)
      }
 
      func testSignUp_WithSuccessResponse_ShouldNotShowErrorAlert() async {
+         let mock = MockNetworkManager()
+         mock.shouldReturnError = false
+         mock.mockResponse = SignUpResponse(
+            email: "test123@gmail.com",
+            password: "Test123",
+            name: "Test",
+            avatar: "Test",
+            role: "test",
+            id: 20
+         )
+        let viewModel = SignUpViewModel(networkManager: mock)
          viewModel.emailAddress = "test@example.com"
          viewModel.name = "Test"
          viewModel.password = "Password123"
@@ -108,6 +122,6 @@ final class SignUp_Test: XCTestCase {
 
          XCTAssertTrue(viewModel.showErrorAlert)
          XCTAssertEqual(viewModel.signUPErrorTitle, StringConsatnts.unexpectedError)
-         XCTAssertEqual(viewModel.signUPErrorMessage, "Something went wrong")
+         XCTAssertEqual(viewModel.signUPErrorMessage, StringConsatnts.defultError)
      }
  }

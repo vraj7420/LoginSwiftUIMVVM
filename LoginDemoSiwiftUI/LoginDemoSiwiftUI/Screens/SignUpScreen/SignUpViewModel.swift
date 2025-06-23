@@ -78,35 +78,35 @@ class SignUpViewModel:ObservableObject {
     @MainActor
     func signUp() async {
         let endpoint = UserAPI.signUp(signUp: .init(name: name, email: emailAddress, password: password, avatar: "https://i.imgur.com/LDOO4Qs.jpg"))
-        Task {
-            do {
-                let response = try await networkManager.request(
-                    endpoint: endpoint,
-                    responseType: SignUpResponse.self
-                )
-                print(response.id) // Already on MainActor
-            } catch let error as APIError {
-                switch error {
-                case .server(let code, let message):
-                    self.signUPErrorTitle = "\(StringConsatnts.serverError) \(code):"
-                    self.signUPErrorMessage = message ?? StringConsatnts.defultError
-                case .network(let err):
-                    self.signUPErrorTitle = StringConsatnts.networkError
-                    self.signUPErrorMessage = err.localizedDescription
-                case .decoding(let err):
-                    self.signUPErrorTitle = StringConsatnts.parsingError
-                    self.signUPErrorMessage = err.localizedDescription
-                case .unknown:
-                    self.signUPErrorTitle = StringConsatnts.unexpectedError
-                    self.signUPErrorMessage = StringConsatnts.defultError
-                }
-                self.showErrorAlert = true
-            } catch {
+        do {
+            let response = try await networkManager.request(
+                endpoint: endpoint,
+                responseType: SignUpResponse.self
+            )
+            print(response.id)
+            self.showErrorAlert = false
+        } catch let error as APIError {
+            switch error {
+            case .server(let code, let message):
+                self.signUPErrorTitle = "\(StringConsatnts.serverError) \(code):"
+                self.signUPErrorMessage = message ?? StringConsatnts.defultError
+            case .network(let err):
+                self.signUPErrorTitle = StringConsatnts.networkError
+                self.signUPErrorMessage = err.localizedDescription
+            case .decoding(let err):
+                self.signUPErrorTitle = StringConsatnts.parsingError
+                self.signUPErrorMessage = err.localizedDescription
+            case .unknown:
                 self.signUPErrorTitle = StringConsatnts.unexpectedError
-                self.signUPErrorMessage = error.localizedDescription
-                self.showErrorAlert = true
+                self.signUPErrorMessage = StringConsatnts.defultError
             }
+            self.showErrorAlert = true
+        } catch {
+            self.signUPErrorTitle = StringConsatnts.unexpectedError
+            self.signUPErrorMessage = error.localizedDescription
+            self.showErrorAlert = true
         }
     }
+
     
 }

@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "5A9547A6-40ED-4858-AD9C-4676A3C078CD",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:LoginDemoSiwiftUI.xcodeproj",
+      "identifier" : "89A0B3012DD1ADF1008E04AF",
+      "name" : "LoginDemoSiwiftUI"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:LoginDemoSiwiftUI.xcodeproj",
+        "identifier" : "B36023E52E05388E000F30E8",
+        "name" : "LoginDemoSiwiftUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

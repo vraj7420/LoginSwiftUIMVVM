@@ -91,7 +91,7 @@ final class LogInViewModel_ValidationTests: XCTestCase {
     func testLogin_Failure_Unauthorized_ShouldShowInvalidCredentials() async {
         let mock = MockNetworkManager()
         mock.shouldReturnError = true
-        mock.mockError = .server(code: 401, message: nil) // ✅ APIError.server
+        mock.mockError = .server(code: 401, message: nil)
 
         let viewModel = LogInViewModal(networkManager: mock)
         viewModel.emailAddress = "wrong@email.com"

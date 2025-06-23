@@ -48,15 +48,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "signUp()"
-            landmarkType = "7">
+            landmarkName = "SignUpViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1A55862C-4857-45BD-86AC-7BB4E6B3712D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
-            landmarkName = "signUp()"
+            landmarkName = "validateAll()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,8 +80,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
             endingLineNumber = "17"
-            landmarkName = "signUp()"
-            landmarkType = "7">
+            landmarkName = "SignUpViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -96,8 +96,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "signUp()"
-            landmarkType = "7">
+            landmarkName = "SignUpViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "signUp()"
-            landmarkType = "7">
+            landmarkName = "SignUpViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -160,8 +160,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "signUp()"
-            landmarkType = "7">
+            landmarkName = "SignUpViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "login()"
-            landmarkType = "7">
+            landmarkName = "LogInViewModal"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -194,6 +194,404 @@
             endingLineNumber = "51"
             landmarkName = "request(endpoint:responseType:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64221687-5455-4D75-AE21-F7D9559F17B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "setupValidation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1593FF4C-AAD0-4CAF-872E-781EE3867C4D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "validateAll()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E795235-203D-477F-896A-6B3C350198AE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUITests/SignUp_Test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "testSignUp_WithUnknownError_ShouldShowUnexpectedError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "606D336A-2F24-4B42-854E-D3C7E985F3C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUITests/SignUp_Test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "testSignUp_WithUnknownError_ShouldShowUnexpectedError()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "606D336A-2F24-4B42-854E-D3C7E985F3C6 - a6c3cb6572166e53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for LoginDemoSiwiftUITests.SignUp_Test.testSignUp_WithServerError_ShouldShowServerErrorAlert() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUITests/SignUp_Test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+               <Location
+                  uuid = "606D336A-2F24-4B42-854E-D3C7E985F3C6 - 2a3184c798c785c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for LoginDemoSiwiftUITests.SignUp_Test.testSignUp_WithServerError_ShouldShowServerErrorAlert() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUITests/SignUp_Test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+               <Location
+                  uuid = "606D336A-2F24-4B42-854E-D3C7E985F3C6 - ce6da5d24bcf5251"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for LoginDemoSiwiftUITests.SignUp_Test.testSignUp_WithServerError_ShouldShowServerErrorAlert() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUITests/SignUp_Test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7CAAC81-44F9-49EB-B236-0F5760826CDE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUITests/SignUp_Test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "testSignUp_WithUnknownError_ShouldShowUnexpectedError()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B7CAAC81-44F9-49EB-B236-0F5760826CDE - e5bb59684c76e894"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LoginDemoSiwiftUITests.SignUp_Test.testSignUp_WithUnknownError_ShouldShowUnexpectedError() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUITests/SignUp_Test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111">
+               </Location>
+               <Location
+                  uuid = "B7CAAC81-44F9-49EB-B236-0F5760826CDE - 9622c9d9284eda6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for LoginDemoSiwiftUITests.SignUp_Test.testSignUp_WithUnknownError_ShouldShowUnexpectedError() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUITests/SignUp_Test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E17465A-09B6-4DD2-A41F-948D8645C47C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUITests/SignUp_Test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "testSignUp_WithUnknownError_ShouldShowUnexpectedError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9F3E9C5-C1AD-4131-AC22-924FB591D89E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUITests/SignUp_Test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "testSignUp_WithSuccessResponse_ShouldNotShowErrorAlert()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EF59A93-936B-4990-918D-9ACE2B96C8A7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "signUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FD80749-CDCC-4096-97AC-22B8C624DDA4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "signUp()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9FD80749-CDCC-4096-97AC-22B8C624DDA4 - f5ec1abc2b32f362"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+               <Location
+                  uuid = "9FD80749-CDCC-4096-97AC-22B8C624DDA4 - 2d1ca3bd928e2b5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+               <Location
+                  uuid = "9FD80749-CDCC-4096-97AC-22B8C624DDA4 - 3134973dbe258f5d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46233343-44DA-44EE-BDE1-BF9DE7A86861"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "signUp()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E752F30B-275C-478A-8553-8A6DF9B75E0C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "signUp()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E752F30B-275C-478A-8553-8A6DF9B75E0C - f5ec1abc2b32f2a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82">
+               </Location>
+               <Location
+                  uuid = "E752F30B-275C-478A-8553-8A6DF9B75E0C - 6ca0e304fc8ad08b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82">
+               </Location>
+               <Location
+                  uuid = "E752F30B-275C-478A-8553-8A6DF9B75E0C - 2d1ca3bd928e2a9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82">
+               </Location>
+               <Location
+                  uuid = "E752F30B-275C-478A-8553-8A6DF9B75E0C - 3134973dbe258e9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3768A1B-BC94-420F-B88B-DEF23A591E38"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "signUp()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D3768A1B-BC94-420F-B88B-DEF23A591E38 - 3134973dbe258da3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90">
+               </Location>
+               <Location
+                  uuid = "D3768A1B-BC94-420F-B88B-DEF23A591E38 - 3134973dbe258da3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for LoginDemoSiwiftUI.SignUpViewModel.signUp() async -&gt; ()"
+                  moduleName = "LoginDemoSiwiftUI.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macm18/LoginSwiftUIMVVM/LoginDemoSiwiftUI/LoginDemoSiwiftUI/Screens/SignUpScreen/SignUpViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
