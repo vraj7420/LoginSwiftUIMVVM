@@ -1,7 +1,7 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Swift
+name: Swift Build and Archive
 
 on:
   push:
@@ -20,13 +20,32 @@ jobs:
       - name: Use Xcode 16.2
         run: sudo xcode-select -switch /Applications/Xcode_16.2.app
 
-      - name: List available iOS simulators
-        run: xcrun simctl list devices
-
-      - name: Build iOS app
+      - name: Find available iPhone simulator
+        id: find-simulator
         run: |
-          xcodebuild \
+          SIMULATOR=$(xcrun simctl list devices available | grep -m1 "iPhone 16" | awk -F '[()]' '{print $2}')
+          echo "SIMULATOR_ID=$SIMULATOR" >> $GITHUB_OUTPUT
+
+      - name: Build and archive app
+        run: |
+          mkdir -p build
+          xcodebuild clean archive \
             -project LoginDemoSiwiftUI/LoginDemoSiwiftUI.xcodeproj \
             -scheme LoginDemoSiwiftUI \
-            -destination "platform=iOS Simulator,name=iPhone 16" \
-            clean build
+            -destination "id=${{ steps.find-simulator.outputs.SIMULATOR_ID }}" \
+            -archivePath build/LoginDemoSiwiftUI.xcarchive \
+            SKIP_INSTALL=NO \
+            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+      - name: Export .ipa
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath build/LoginDemoSiwiftUI.xcarchive \
+            -exportPath build/export \
+            -exportOptionsPlist ExportOptions.plist
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LoginDemoSiwiftUI.ipa
+          path: build/export/*.ipa
