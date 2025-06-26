@@ -17,9 +17,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Debug - find Package.swift
-        run: find . -name Package.swift
+      - name: Build using xcodebuild
+        run: |
+          xcodebuild \
+            -project YourApp.xcodeproj \
+            -scheme YourApp \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            clean build
 
-      - name: Build Swift package
-        run: swift build -v
-        working-directory: LoginDemoSiwiftUI  
