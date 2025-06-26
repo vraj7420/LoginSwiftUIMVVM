@@ -20,8 +20,8 @@ jobs:
       - name: Build using xcodebuild
         run: |
           xcodebuild \
-            -project YourApp.xcodeproj \
-            -scheme YourApp \
+            -project LoginDemoSiwiftUI.xcodeproj \
+            -scheme LoginDemoSiwiftUI \
             -destination 'platform=iOS Simulator,name=iPhone 15' \
             clean build
 
