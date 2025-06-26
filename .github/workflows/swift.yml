@@ -20,22 +20,14 @@ jobs:
       - name: Use Xcode 16.2
         run: sudo xcode-select -switch /Applications/Xcode_16.2.app
 
-      - name: Find available iPhone simulator
-        id: find-simulator
+      - name: Archive App (Device)
         run: |
-          SIMULATOR=$(xcrun simctl list devices available | grep -m1 "iPhone 16" | awk -F '[()]' '{print $2}')
-          echo "SIMULATOR_ID=$SIMULATOR" >> $GITHUB_OUTPUT
-
-      - name: Build and archive app
-        run: |
-          mkdir -p build
-          xcodebuild clean archive \
+          xcodebuild \
             -project LoginDemoSiwiftUI/LoginDemoSiwiftUI.xcodeproj \
             -scheme LoginDemoSiwiftUI \
-            -destination "id=${{ steps.find-simulator.outputs.SIMULATOR_ID }}" \
+            -configuration Release \
             -archivePath build/LoginDemoSiwiftUI.xcarchive \
-            SKIP_INSTALL=NO \
-            BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+            clean archive
 
       - name: Export .ipa
         run: |
