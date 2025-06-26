@@ -14,8 +14,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout source
         uses: actions/checkout@v4
+
+      - name: Debug - find Package.swift
+        run: find . -name Package.swift
 
       - name: Build Swift package
         run: swift build -v
+        working-directory: LoginDemoSiwiftUI  
