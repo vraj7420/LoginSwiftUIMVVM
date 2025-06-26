@@ -14,17 +14,19 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Xcode 16.2
-        run: sudo xcode-select -switch /Applications/Xcode_16.2.app
+      - name: Use Xcode 15.4
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
 
-      - name: Build iOS App
+      - name: List available iOS simulators
+        run: xcrun simctl list devices
+
+      - name: Build iOS app
         run: |
           xcodebuild \
             -project LoginDemoSiwiftUI/LoginDemoSiwiftUI.xcodeproj \
             -scheme LoginDemoSiwiftUI \
-            -destination "platform=iOS Simulator,name=iPhone 15" \
+            -destination "platform=iOS Simulator,name=iPhone 16" \
             clean build
-
