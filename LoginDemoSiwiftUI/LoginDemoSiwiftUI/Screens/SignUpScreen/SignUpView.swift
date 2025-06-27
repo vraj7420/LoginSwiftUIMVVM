@@ -18,8 +18,11 @@ struct SignUpView: View {
                 .padding(.trailing,50)
             VStack{
                 ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: StringConsatnts.emailPlaceholder, keyboardType: .emailAddress)
+                    .accessibilityIdentifier("signup_emailTextField")
                 ULTextFieldView(text: $viewModel.name, errorText: $viewModel.errorName,placeholder: StringConsatnts.namePlaceholder)
+                    .accessibilityIdentifier("signup_nameTextField")
                 ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: StringConsatnts.passwodPlaceholder)
+                    .accessibilityIdentifier("signup_passwordTextField")
             }.padding(.vertical,40)
             VStack(alignment: .leading) {
                 CustomButton(
@@ -35,6 +38,7 @@ struct SignUpView: View {
                         }
                         
                     }
+                    .accessibilityIdentifier("signup_signUpButton")
                 Text(StringConsatnts.socialSignUpTitle)
                     .font(.system(size: 25,weight: .bold))
                     .foregroundColor(.gray)
@@ -59,15 +63,15 @@ struct SignUpView: View {
         HStack {
             IconButton(imageName: ImageConstants.facebookLogo, width: 50, height: 50){
                 
-            }
+            }.accessibilityIdentifier("signup_facebookButton")
             Spacer()
             IconButton(imageName: ImageConstants.twiteerLogo, width: 50, height: 50){
                 
-            }
+            }.accessibilityIdentifier("signup_twitterButton")
             Spacer()
             IconButton(imageName: ImageConstants.googleLogo, width: 50, height: 50){
                 
-            }
+            }.accessibilityIdentifier("signup_googleButton")
         }
     }
 }

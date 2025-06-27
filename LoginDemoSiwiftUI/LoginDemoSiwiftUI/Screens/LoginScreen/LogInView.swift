@@ -22,7 +22,9 @@ struct LogInView: View {
                 .multilineTextAlignment(.leading)
             VStack{
                 ULTextFieldView(text: $viewModel.emailAddress, errorText: $viewModel.errorEmailAddress,placeholder: StringConsatnts.emailPlaceholder, keyboardType: .emailAddress)
+                    .accessibilityIdentifier("login_emailTextField")
                 ULTextFieldView(text: $viewModel.password, errorText: $viewModel.errorPassword,placeholder: StringConsatnts.passwodPlaceholder)
+                    .accessibilityIdentifier("login_passwordTextField")
             }.padding(.vertical,40)
             CustomButton(
                 title: StringConsatnts.signInButtonTitle,
@@ -35,7 +37,7 @@ struct LogInView: View {
                     Task{
                         await viewModel.login()
                     }
-                }
+                }.accessibilityIdentifier("login_signInButton")
         }
         .alert(isPresented: $viewModel.showErrorAlert) {
                     Alert(

@@ -15,7 +15,7 @@ class MockNetworkManager: NetworkManagerProtocol {
 
     func request<T: Decodable>(endpoint: APIEndpoint, responseType: T.Type) async throws -> T {
         if shouldReturnError {
-            throw mockError // ✅ Must be APIError
+            throw mockError 
         }
         guard let response = mockResponse as? T else {
             throw APIError.decoding(NSError(domain: "mock", code: 0))

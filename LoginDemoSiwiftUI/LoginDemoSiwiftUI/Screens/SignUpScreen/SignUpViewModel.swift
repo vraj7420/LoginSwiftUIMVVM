@@ -107,6 +107,4 @@ class SignUpViewModel:ObservableObject {
             self.showErrorAlert = true
         }
     }
-
-    
 }

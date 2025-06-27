@@ -43,8 +43,7 @@ struct WelcomeView: View {
                         textColor: .white,
                         background: Color(.darkGray), isEnabled: true){
                             router.push(.signUp)
-                        }
-                
+                        }.accessibilityIdentifier("signUpButton")
                     CustomButton(
                         title: StringConsatnts.signInButtonTitle,
                         textColor: .white,
@@ -54,7 +53,7 @@ struct WelcomeView: View {
                             endPoint: .trailing
                         ), isEnabled: true) {
                             router.push(.logIn)
-                        }
+                        }.accessibilityIdentifier("signInButton")
                     
                 }
             }

@@ -11,6 +11,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		89D4252A2E0A683600F91949 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89A0B2FA2DD1ADF1008E04AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89A0B3012DD1ADF1008E04AF;
+			remoteInfo = LoginDemoSiwiftUI;
+		};
 		B36023EA2E05388E000F30E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 89A0B2FA2DD1ADF1008E04AF /* Project object */;
@@ -23,6 +30,7 @@
 /* Begin PBXFileReference section */
 		89A0B3022DD1ADF1008E04AF /* LoginDemoSiwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginDemoSiwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89ABF5922E0912ED00187C17 /* LoginDemoSiwiftUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LoginDemoSiwiftUI.xctestplan; sourceTree = "<group>"; };
+		89D425242E0A683600F91949 /* LoginDemoSiwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginDemoSiwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36023E62E05388E000F30E8 /* LoginDemoSiwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginDemoSiwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -30,6 +38,11 @@
 		89A0B3042DD1ADF1008E04AF /* LoginDemoSiwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = LoginDemoSiwiftUI;
+			sourceTree = "<group>";
+		};
+		89D425252E0A683600F91949 /* LoginDemoSiwiftUIUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LoginDemoSiwiftUIUITests;
 			sourceTree = "<group>";
 		};
 		B36023E72E05388E000F30E8 /* LoginDemoSiwiftUITests */ = {
@@ -45,6 +58,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				89D3D71B2DD306F10011C49C /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89D425212E0A683600F91949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +84,7 @@
 				89ABF5922E0912ED00187C17 /* LoginDemoSiwiftUI.xctestplan */,
 				89A0B3042DD1ADF1008E04AF /* LoginDemoSiwiftUI */,
 				B36023E72E05388E000F30E8 /* LoginDemoSiwiftUITests */,
+				89D425252E0A683600F91949 /* LoginDemoSiwiftUIUITests */,
 				89A0B3032DD1ADF1008E04AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +94,7 @@
 			children = (
 				89A0B3022DD1ADF1008E04AF /* LoginDemoSiwiftUI.app */,
 				B36023E62E05388E000F30E8 /* LoginDemoSiwiftUITests.xctest */,
+				89D425242E0A683600F91949 /* LoginDemoSiwiftUIUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +124,29 @@
 			productName = LoginDemoSiwiftUI;
 			productReference = 89A0B3022DD1ADF1008E04AF /* LoginDemoSiwiftUI.app */;
 			productType = "com.apple.product-type.application";
+		};
+		89D425232E0A683600F91949 /* LoginDemoSiwiftUIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89D4252E2E0A683600F91949 /* Build configuration list for PBXNativeTarget "LoginDemoSiwiftUIUITests" */;
+			buildPhases = (
+				89D425202E0A683600F91949 /* Sources */,
+				89D425212E0A683600F91949 /* Frameworks */,
+				89D425222E0A683600F91949 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89D4252B2E0A683600F91949 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				89D425252E0A683600F91949 /* LoginDemoSiwiftUIUITests */,
+			);
+			name = LoginDemoSiwiftUIUITests;
+			packageProductDependencies = (
+			);
+			productName = LoginDemoSiwiftUIUITests;
+			productReference = 89D425242E0A683600F91949 /* LoginDemoSiwiftUIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		B36023E52E05388E000F30E8 /* LoginDemoSiwiftUITests */ = {
 			isa = PBXNativeTarget;
@@ -133,11 +178,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					89A0B3012DD1ADF1008E04AF = {
 						CreatedOnToolsVersion = 16.1;
+					};
+					89D425232E0A683600F91949 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 89A0B3012DD1ADF1008E04AF;
 					};
 					B36023E52E05388E000F30E8 = {
 						CreatedOnToolsVersion = 16.2;
@@ -165,12 +214,20 @@
 			targets = (
 				89A0B3012DD1ADF1008E04AF /* LoginDemoSiwiftUI */,
 				B36023E52E05388E000F30E8 /* LoginDemoSiwiftUITests */,
+				89D425232E0A683600F91949 /* LoginDemoSiwiftUIUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		89A0B3002DD1ADF1008E04AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89D425222E0A683600F91949 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -194,6 +251,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		89D425202E0A683600F91949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B36023E22E05388E000F30E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,6 +268,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		89D4252B2E0A683600F91949 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89A0B3012DD1ADF1008E04AF /* LoginDemoSiwiftUI */;
+			targetProxy = 89D4252A2E0A683600F91949 /* PBXContainerItemProxy */;
+		};
 		B36023EB2E05388E000F30E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 89A0B3012DD1ADF1008E04AF /* LoginDemoSiwiftUI */;
@@ -389,6 +458,40 @@
 			};
 			name = Release;
 		};
+		89D4252C2E0A683600F91949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.loginDemoSiwiftUI.LoginDemoSiwiftUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LoginDemoSiwiftUI;
+			};
+			name = Debug;
+		};
+		89D4252D2E0A683600F91949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.loginDemoSiwiftUI.LoginDemoSiwiftUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LoginDemoSiwiftUI;
+			};
+			name = Release;
+		};
 		B36023ED2E05388E000F30E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -447,6 +550,15 @@
 			buildConfigurations = (
 				89A0B3112DD1ADFA008E04AF /* Debug */,
 				89A0B3122DD1ADFA008E04AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89D4252E2E0A683600F91949 /* Build configuration list for PBXNativeTarget "LoginDemoSiwiftUIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89D4252C2E0A683600F91949 /* Debug */,
+				89D4252D2E0A683600F91949 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

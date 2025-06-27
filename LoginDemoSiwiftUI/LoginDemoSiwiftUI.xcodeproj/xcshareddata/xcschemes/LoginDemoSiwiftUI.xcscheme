@@ -46,6 +46,17 @@
                ReferencedContainer = "container:LoginDemoSiwiftUI.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "89D425232E0A683600F91949"
+               BuildableName = "LoginDemoSiwiftUIUITests.xctest"
+               BlueprintName = "LoginDemoSiwiftUIUITests"
+               ReferencedContainer = "container:LoginDemoSiwiftUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
